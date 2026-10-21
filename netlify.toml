@@ -1,11 +1,12 @@
 [build]
-  base = "frontend"
-  publish = "dist"
-  command = "npm run build"
-  functions = "../backend/netlify/functions"
+  base = "."
+  publish = "frontend/dist"
+  command = "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
+  functions = "backend/netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["express"]
 
 [[redirects]]
   from = "/api/*"
