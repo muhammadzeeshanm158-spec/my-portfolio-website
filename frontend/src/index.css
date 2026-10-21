@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "tailwindcss";
+
+/* 👈 Tailwind v4 ke liye ye 1 line MUST hai class-based dark mode ke liye */
+/* @custom-variant dark (&:is(.dark *)); */
+
+
+
+
+
+
+/* Chrome autofill blue background hatane ke liye */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Disable Text Selection */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Print Disable */
+@media print {
+  body { display: none; }
+}
+
+
+/* ===== GLOBAL RESPONSIVE FIXES ===== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile First Grids */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Section Padding Responsive */
+section {
+  padding: 2rem 1rem;
+}
+@media (min-width: 768px) {
+  section { padding: 4rem 2rem; }
+}
+@media (min-width: 1024px) {
+  section { padding: 5rem 3rem; }
+}
+
+/* Text Responsive */
+h1 { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
+p { font-size: clamp(0.95rem, 2vw, 1.1rem); line-height: 1.7; }
+
+/* Disable horizontal scroll */
+.container {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 1280px) {
+  .container { max-width: 1280px; margin: 0 auto; }
+}
