@@ -58,7 +58,7 @@ export const projectsData = [
 export const aboutData = {
   id: 1,
   heading: "About Me",
-  description: "I am Muhammad Zeeshan, a passionate Full Stack Developer based in Karachi, Pakistan. I specialize in MERN Stack (【entity-MongoDB¦canonical_name=MongoDB】, Express.js, React.js, Node.js) and have completed a professional Gemini AI course to build AI-powered web applications.\n\nI love turning complex problems into simple, beautiful, and intuitive solutions. My focus is on writing clean, efficient code and creating modern UI/UX that users love. I have experience in building responsive portfolios, business websites, and full-stack applications with AI integration.\n\nMy goal is to help businesses and individuals grow online with fast, scalable, and intelligent web solutions.",
+  description: "I am Muhammad Zeeshan, a passionate Full Stack Developer based in Karachi, Pakistan. I specialize in MERN Stack (MongoDB, Express.js, React.js, Node.js) and have completed a professional Gemini AI course to build AI-powered web applications.\n\nI love turning complex problems into simple, beautiful, and intuitive solutions. My focus is on writing clean, efficient code and creating modern UI/UX that users love. I have experience in building responsive portfolios, business websites, and full-stack applications with AI integration.\n\nMy goal is to help businesses and individuals grow online with fast, scalable, and intelligent web solutions.",
   experience_years: 1,
   completed_projects: 3,
   updated_at: "2026-10-16T09:48:22.000Z"
