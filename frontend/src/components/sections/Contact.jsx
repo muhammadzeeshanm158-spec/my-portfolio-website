@@ -29,14 +29,14 @@ const Contact = () => {
       web3FormData.append("name", formData.name);
       web3FormData.append("email", formData.email);
 
-      // ✅ FIX: Subject — Email ki Subject line ke liye!
+      // ✅ Subject — Email ki Subject line!
       web3FormData.append("subject", `New Lead: ${formData.name} - ${formData.subject}`);
 
-      // ✅ FIX: Subject body me bhi dikhe!
+      // ✅ Subject — Body me ek baar!
       web3FormData.append("Project Subject", formData.subject);
 
-      // ✅ FIX: Message me bhi subject jor diya!
-      web3FormData.append("message", `Subject: ${formData.subject}\n\nMessage: ${formData.message}`);
+      // ✅ Message — Sirf message! Double nahi!
+      web3FormData.append("message", formData.message);
 
       web3FormData.append("from_name", "Portfolio Website");
       web3FormData.append("to_email", "muhammadzeeshanm158@gmail.com");
