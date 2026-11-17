@@ -5,7 +5,6 @@ import {
   FaEnvelope,
   FaPhone,
 } from "react-icons/fa";
-// ❌ api hata diya — Ab MySQL me save nahi hoga — Sirf Gmail pe jayega!
 import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
@@ -25,18 +24,22 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      // ✅ STATIC — Sirf Gmail pe jayega — Web3Forms — Bina backend ke!
       const web3FormData = new FormData();
       web3FormData.append("access_key", "9aaea4ec-bfaf-4393-9edc-496fd876a2a2");
       web3FormData.append("name", formData.name);
       web3FormData.append("email", formData.email);
-      web3FormData.append(
-        "subject",
-        `🚀 New Lead: ${formData.name} - ${formData.subject}`,
-      );
-      web3FormData.append("message", formData.message);
+
+      // ✅ FIX: Subject — Email ki Subject line ke liye!
+      web3FormData.append("subject", `New Lead: ${formData.name} - ${formData.subject}`);
+
+      // ✅ FIX: Subject body me bhi dikhe!
+      web3FormData.append("Project Subject", formData.subject);
+
+      // ✅ FIX: Message me bhi subject jor diya!
+      web3FormData.append("message", `Subject: ${formData.subject}\n\nMessage: ${formData.message}`);
+
       web3FormData.append("from_name", "Portfolio Website");
-      web3FormData.append("to_email", "muhammadzeeshanm158@gmail.com"); // ✅ Tumhari Gmail
+      web3FormData.append("to_email", "muhammadzeeshanm158@gmail.com");
 
       const web3Res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -63,9 +66,8 @@ const Contact = () => {
     >
       <Toaster position="top-right" />
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading - Responsive */}
         <div className="text-center mb-10 sm:mb-14">
-          <h2 className="text- sm:text-4xl font-extrabold text-gray-900">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
             Contact Me
           </h2>
           <p className="text-gray-500 mt-2 text-sm sm:text-base max-w-xl mx-auto px-2">
@@ -75,7 +77,7 @@ const Contact = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* LEFT: Contact Info - Full width on mobile */}
+          {/* LEFT: Contact Info */}
           <div className="flex-1 w-full">
             <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border border-gray-100 shadow-sm h-full">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900">
@@ -132,7 +134,7 @@ const Contact = () => {
 
               <div className="mt-8 sm:mt-10 bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-5">
                 <p className="text-sm font-bold text-gray-900">Response Time</p>
-                <p className="text-xs sm:text- text-gray-500 mt-1 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-500 mt-1 leading-relaxed">
                   Usually within 24 hours. Your message goes directly to my Gmail.
                 </p>
               </div>
@@ -182,6 +184,7 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
+                    required
                     placeholder="Project Inquiry"
                     className="w-full mt-1.5 sm:mt-2 px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none text-sm transition"
                   />
