@@ -1,10 +1,10 @@
-// src/data.js — Final Fixed!
+// src/data.js — Final Clean — No Tags!
 
 export const educationData = [
   {
     id: 2,
-    degree: "Commerce", // ✅ Commerece -> Commerce
-    institution: "Govt Degree College Buffer Zone Karachi", // ✅ Collage -> College
+    degree: "Commerce",
+    institution: "Govt Degree College Buffer Zone Karachi",
     start_year: 2024,
     end_year: 2026,
     description: "Intermediate in Commerce from Govt Degree College Buffer Zone. Combining academic knowledge of business and finance with a passion for Full Stack Development. Learning how commerce and technology work together"
@@ -15,7 +15,7 @@ export const experienceData = [
   {
     id: 1,
     role: "Full Stack Developer",
-    company_name: "Digicop Solution", // ✅ Sulution -> Solution
+    company_name: "Digicop Solution",
     start_date: "2025-12-08T19:00:00.000Z",
     end_date: null,
     description: "Building modern full-stack web applications for clients using MERN Stack.\n\n- Developed 10+ responsive portfolio and business websites with React.js & Tailwind CSS\n- Created secure REST APIs with Node.js, 【entity-Express¦canonical_name=Express】.js & JWT Authentication\n- Designed Admin Dashboards with complete CRUD for managing portfolio content\n- Integrated MySQL and 【entity-MongoDB¦canonical_name=MongoDB】 databases with optimized queries\n- Improved website loading speed and SEO performance\n- Managing deployments on Vercel and client hosting"
@@ -66,10 +66,10 @@ export const aboutData = {
 
 export const skillsData = [
   { id: 10, skill_name: "Tailwind", category: "Frontend", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", proficiency_level: 78 },
-  { id: 9, skill_name: "Bootstrap 5", category: "Frontend", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg", proficiency_level: 75 }, // ✅ Boostrap -> Bootstrap
+  { id: 9, skill_name: "Bootstrap 5", category: "Frontend", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg", proficiency_level: 75 },
   { id: 8, skill_name: "Gemini Ai", category: "Tools", icon_url: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_icon.svg", proficiency_level: 65 },
   { id: 7, skill_name: "MySQL", category: "Database", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", proficiency_level: 80 },
-  { id: 6, skill_name: "【entity-MongoDB¦canonical_name=MongoDB】", category: "Database", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", proficiency_level: 60 },
+  { id: 6, skill_name: "MongoDB", category: "Database", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", proficiency_level: 60 },
   { id: 5, skill_name: "Express.js", category: "Backend", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", proficiency_level: 80 },
   { id: 4, skill_name: "Node.js", category: "Backend", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", proficiency_level: 70 },
   { id: 3, skill_name: "Angular", category: "Frontend", icon_url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg", proficiency_level: 70 },
@@ -78,7 +78,7 @@ export const skillsData = [
 
 export const socialData = [
   { id: 2, platform_name: "LinkedIn", profile_url: "https://www.linkedin.com/in/muhammad-zeeshan-muhammad-yaqoob-394ab0420/", icon_class: "FaLinkedin" },
-  { id: 1, platform_name: "【entity-GitHub¦canonical_name=GitHub】", profile_url: "https://github.com/muhammadzeeshanm158-spec?tab=repositories", icon_class: "FaGithub" }
+  { id: 1, platform_name: "GitHub", profile_url: "https://github.com/muhammadzeeshanm158-spec?tab=repositories", icon_class: "FaGithub" }
 ];
 
 export const heroData = {
