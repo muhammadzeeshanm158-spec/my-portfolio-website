@@ -25,12 +25,12 @@ const AnimatedIntro = ({ onFinish = () => {} }) => {
   }, [onFinish]);
 
   return (
-    <div className={`fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${hide? 'opacity-0 scale-110 pointer-events-none' : 'opacity-100 scale-100'}`}>
+    <div className={`fixed inset-0 z-9999 bg-[#0a0a0a] flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${hide? 'opacity-0 scale-110 pointer-events-none' : 'opacity-100 scale-100'}`}>
 
       {/* Logo */}
       <div className="relative">
         <div className="absolute inset-0 bg-white/10 blur- rounded-full animate-pulse"></div>
-        <div className="relative w-24 h-24 sm:w-28 sm:h-28 bg-white text-black rounded-[1.5rem] flex items-center justify-center font-extrabold text-3xl sm:text-4xl shadow-2xl animate-[logoPop_1s_ease-out]">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 bg-white text-black rounded-3xl flex items-center justify-center font-extrabold text-3xl sm:text-4xl shadow-2xl animate-[logoPop_1s_ease-out]">
           MZ
         </div>
         <div className="absolute -inset-4 border border-white/10 rounded- animate-[spin_3s_linear_infinite]"></div>

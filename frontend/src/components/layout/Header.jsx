@@ -7,20 +7,14 @@ const Header = () => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
 
-  // ✅ FIX 1: Scroll pe header ko shadow dena
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // ✅ FIX 2: Mobile menu open pe scroll lock
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
     return () => { document.body.style.overflow = 'auto'; };
@@ -39,9 +33,8 @@ const Header = () => {
 
   return (
     <>
-      {/* ✅ FIX 3: Header ko FIXED kiya - sticky ki jagah fixed */}
       <header className={`fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-b-2 transition-all duration-300 ${
-        isScrolled ? 'border-gray-300 shadow-lg py-2' : 'border-gray-200 shadow-sm py-0'
+        isScrolled ? 'border-gray-300 shadow-lg' : 'border-gray-200 shadow-sm'
       }`}>
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
 
@@ -89,36 +82,58 @@ const Header = () => {
             {isMenuOpen ? '✕' : '☰'}
           </button>
         </div>
+      </header>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <>
-            {/* ✅ FIX 4: top- bug fix kiya */}
-            <div className="lg:hidden fixed inset-0 top- bg-black/20 backdrop-blur-sm z-40" onClick={() => setIsMenuOpen(false)} />
-            <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t-2 border-gray-200 px-4 py-6 flex flex-col gap-1 shadow-xl z-50 max-h-[calc(100vh-73px)] overflow-y-auto">
+      {/* Mobile Menu: header ke BAHAR */}
+      {isMenuOpen && (
+        <>
+          {/* Overlay */}
+          <div
+            className="lg:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
+            onClick={() => setIsMenuOpen(false)}
+          />
+
+          {/* Right Side Sidebar */}
+          <div className="lg:hidden fixed top-0 right-0 h-screen w-72 max-w-[80%] bg-white border-l-2 border-gray-900 shadow-[-4px_0px_0px_0px_rgba(0,0,0,1)] p-4 z-[70] overflow-y-auto">
+            {/* Sidebar Header */}
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-lg font-extrabold text-gray-900">Menu</span>
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="w-10 h-10 flex items-center justify-center border-2 border-gray-200 rounded-xl bg-white text-gray-900"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`py-3 px-3 rounded-xl text-base font-medium flex justify-between border-2 ${
-                    isActive(link.path) ? 'bg-gray-900 text-white border-gray-900' : 'text-gray-700 hover:bg-gray-100 border-transparent'
+                  className={`py-3 px-4 rounded-xl text-base font-medium flex justify-between items-center ${
+                    isActive(link.path) ? 'bg-gray-900 text-white font-bold' : 'text-gray-700 hover:bg-gray-100'
                   }`}
                 >
                   {link.label}
-                  {isActive(link.path) && <span className="w-2 h-2 bg-white rounded-full mt-2"></span>}
+                  {isActive(link.path) && <span className="w-1.5 h-1.5 bg-white rounded-full shrink-0"></span>}
                 </Link>
               ))}
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="bg-gray-900 text-white px-6 py-3.5 rounded-full text-center mt-4 font-bold border-2 border-gray-900">
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="bg-gray-900 text-white px-4 py-3 rounded-full text-center mt-3 text-base font-bold border-2 border-gray-900 hover:bg-black transition"
+              >
                 Hire Me
               </Link>
             </div>
-          </>
-        )}
-      </header>
+          </div>
+        </>
+      )}
 
-      {/* ✅ FIX 5: Header fixed hai to content ko neeche karne ke liye spacer */}
-      <div className="h- sm:h-"></div>
+      {/* Spacer */}
+      <div className="h-16 sm:h-[72px]"></div>
     </>
   );
 };

@@ -1,38 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FaCheckCircle, FaBriefcase, FaFolderOpen } from "react-icons/fa";
-import api from "../../api/api";
+import { aboutData } from "../../data.js"; // ✅ Static data — No API!
 
 const About = () => {
-  const [about, setAbout] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api
-   .get("/about")
-   .then((res) => {
-        const raw = res.data?.data || res.data;
-        const data = Array.isArray(raw)? raw[0] : raw;
-        if (data) setAbout(data);
-        setLoading(false);
-      })
-   .catch(() => setLoading(false));
-  }, []);
-
-  if (loading) {
-    return (
-      <section id="about" className="py-12 sm:py-20 bg-gray-50">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400 animate-pulse">Loading about information...</p>
-        </div>
-      </section>
-    );
-  }
+  // ✅ Seedha data.js se — No loading, No fetch!
+  const about = aboutData;
 
   if (!about) {
     return (
       <section id="about" className="py-12 sm:py-20 bg-gray-50">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white border border-dashed rounded-2xl sm:rounded-[1.5rem] p-8 sm:p-12">
+          <div className="bg-white border border-dashed rounded-2xl sm:rounded-3xl p-8 sm:p-12">
             <h3 className="font-bold text-base sm:text-lg">About Information Not Found</h3>
             <p className="text-xs sm:text-sm text-gray-500 mt-2">Please add your information from Admin Panel</p>
           </div>
@@ -48,7 +26,7 @@ const About = () => {
 
           {/* LEFT CARD - Full width on mobile */}
           <div className="flex-1 w-full lg:max-w- order-2 lg:order-1">
-            <div className="relative bg-white rounded-2xl sm:rounded-[1.5rem] p-4 sm:p-6 lg:p-8 shadow-sm border border-gray-100">
+            <div className="relative bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-sm border border-gray-100">
               <div className="bg-gray-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-white/10 rounded-full blur-2xl"></div>
                 <h3 className="text-xl sm:text-2xl font-bold relative z-10">MERN Stack Developer</h3>
@@ -82,7 +60,7 @@ const About = () => {
               {about.heading}
             </h2>
             <div className="w-16 sm:w-20 h-1 bg-gray-900 mt-4 rounded-full mx-auto lg:mx-0"></div>
-            <p className="text-gray-500 leading-relaxed mt-5 sm:mt-6 text- sm:text-base max-w-2xl mx-auto lg:mx-0">
+            <p className="text-gray-500 leading-relaxed mt-5 sm:mt-6 text- sm:text-base max-w-2xl mx-auto lg:mx-0 whitespace-pre-line">
               {about.description}
             </p>
             <a href="#contact"

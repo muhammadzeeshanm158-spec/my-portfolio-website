@@ -1,32 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../api/api';
+import React from 'react';
+import { experienceData } from '../../data.js'; // ✅ Static data — No API!
 
 const Experience = () => {
-  const [experience, setExperience] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.get('/experiences') // experiences (plural) use karo
-    .then(res => {
-        const data = res.data?.data || res.data || [];
-        setExperience(Array.isArray(data) ? data : []);
-      })
-    .catch(() => setExperience([]))
-    .finally(() => setLoading(false));
-  }, []);
+  // ✅ Seedha data.js se — No loading, No fetch!
+  const experience = experienceData || [];
 
   const formatDate = (dateStr) => {
     if (!dateStr) return 'Present';
     return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
   };
-
-  if (loading) {
-    return (
-      <section className="py-20 text-center">
-        <p className="text-gray-400 animate-pulse">Loading experience...</p>
-      </section>
-    );
-  }
 
   return (
     <section id="experience" className="py-16 lg:py-24 w-full bg-white">

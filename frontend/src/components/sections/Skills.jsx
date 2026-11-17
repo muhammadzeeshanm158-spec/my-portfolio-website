@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../api/api';
+import React from 'react';
+import { skillsData } from '../../data.js'; // ✅ Static data — No API!
 
 const Skills = () => {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.get('/skills')
-   .then(res => {
-        const data = res.data?.data || res.data || [];
-        setSkills(Array.isArray(data)? data : []);
-      })
-   .catch(() => setSkills([]))
-   .finally(() => setLoading(false));
-  }, []);
+  // ✅ Seedha data.js se — No loading, No fetch!
+  const skills = skillsData || [];
 
   const getCategoryColor = (cat) => {
     const c = (cat || '').toLowerCase();
@@ -23,14 +13,6 @@ const Skills = () => {
     if (c.includes('tool')) return 'bg-orange-50 text-orange-700 border-orange-200';
     return 'bg-gray-50 text-gray-700 border-gray-200';
   };
-
-  if (loading) {
-    return (
-      <section className="py-12 sm:py-20 text-center">
-        <p className="text-gray-400 animate-pulse text-sm">Loading skills...</p>
-      </section>
-    );
-  }
 
   return (
     <section id="skills" className="py-16 lg:py-24 w-full overflow-hidden bg-gray-50">

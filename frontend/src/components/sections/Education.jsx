@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../api/api';
+import React from 'react';
+import { educationData } from '../../data.js'; // ✅ Static data — No API!
 import { FaGraduationCap } from 'react-icons/fa';
 
 const Education = () => {
-  const [education, setEducation] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // ✅ Seedha data.js se — No loading, No fetch!
+  const education = educationData || [];
 
-  useEffect(() => {
-    api.get('/education').then(res => {
-      const data = res.data?.data || res.data || [];
-      setEducation(Array.isArray(data) ? data : []);
-    }).catch(() => setEducation([])).finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return null;
   if (education.length === 0) return null;
 
   return (

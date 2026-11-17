@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../api/api';
+import React from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaFacebook, FaYoutube, FaGlobe, FaExternalLinkAlt } from 'react-icons/fa';
+import { socialData } from '../../data.js'; // ✅ Static data — No API!
 
 const SocialLinks = () => {
-  const [socials, setSocials] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    api.get('/social-links').then(res => {
-      const data = res.data?.data || res.data || [];
-      setSocials(Array.isArray(data) ? data : []);
-    }).catch(() => setSocials([])).finally(() => setLoading(false));
-  }, []);
+  // ✅ Seedha data.js se — No loading, No fetch!
+  const socials = socialData || [];
 
   const getCardData = (platform) => {
     const p = (platform || '').toLowerCase();
@@ -24,7 +17,6 @@ const SocialLinks = () => {
     return { Icon: FaGlobe, bg: 'bg-gray-900' };
   };
 
-  if (loading) return null;
   if (socials.length === 0) return null;
 
   return (
@@ -69,3 +61,6 @@ const SocialLinks = () => {
 };
 
 export default SocialLinks;
+
+
+

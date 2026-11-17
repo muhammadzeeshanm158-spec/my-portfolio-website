@@ -5,7 +5,7 @@ import {
   FaEnvelope,
   FaPhone,
 } from "react-icons/fa";
-import api from "../../api/api";
+// ❌ api hata diya — Ab MySQL me save nahi hoga — Sirf Gmail pe jayega!
 import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
@@ -25,20 +25,9 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      // ✅ 1. Tumhare admin panel me save hoga (/zp-secret-2026/messages)
-      // ✅ Naya (Sahi) - Backend ke hisab se
-      await api.post("/messages", {
-        sender_name: formData.name,
-        sender_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-      });
-
-      // ✅ 2. Tumhari Gmail pe email ayega - Bina password ke (Web3Forms)
+      // ✅ STATIC — Sirf Gmail pe jayega — Web3Forms — Bina backend ke!
       const web3FormData = new FormData();
-      // ✅ FIX: Yahan Web3Forms ki asli key lagao - web3forms.com se milegi
-      // ❌ "03120123859" ye key nahi hai, isiliye email nahi aa raha tha
-      web3FormData.append("access_key", "9aaea4ec-bfaf-4393-9edc-496fd876a2a2"); 
+      web3FormData.append("access_key", "9aaea4ec-bfaf-4393-9edc-496fd876a2a2");
       web3FormData.append("name", formData.name);
       web3FormData.append("email", formData.email);
       web3FormData.append(
@@ -54,12 +43,14 @@ const Contact = () => {
         body: web3FormData,
       });
       const web3Result = await web3Res.json();
-      console.log("Web3Forms Result:", web3Result); // ✅ Console me check kar sakte ho
+      console.log("Web3Forms Result:", web3Result);
+
+      if (!web3Result.success) throw new Error("Web3Forms failed");
 
       toast.success("Message sent successfully!");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to send message");
+      toast.error("Failed to send message — Try again!");
     } finally {
       setLoading(false);
     }
@@ -142,8 +133,7 @@ const Contact = () => {
               <div className="mt-8 sm:mt-10 bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-5">
                 <p className="text-sm font-bold text-gray-900">Response Time</p>
                 <p className="text-xs sm:text- text-gray-500 mt-1 leading-relaxed">
-                  Usually within 24 hours. Your message appears in admin
-                  dashboard instantly.
+                  Usually within 24 hours. Your message goes directly to my Gmail.
                 </p>
               </div>
             </div>
@@ -163,7 +153,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="John Doe"
+                    placeholder="Enter Your Name"
                     className="w-full mt-1.5 sm:mt-2 px-4 py-3 sm:py-3 rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none text-sm transition"
                   />
                 </div>
@@ -178,7 +168,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="john@example.com"
+                    placeholder="Enter Your Email Address"
                     className="w-full mt-1.5 sm:mt-2 px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none text-sm transition"
                   />
                 </div>
